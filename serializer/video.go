@@ -1,26 +1,27 @@
 package serializer
 
-import(
+import (
 	"github.com/weilaim/blog-api/model"
 )
+
 // Video 视频序列化器
 type Video struct {
-	ID uint `json:"id"`
-	Title string `json:"title"`
-	Info string `json:"info"`
-	URL string `json:"url"`
-	Avatar string `json:"avatar"`
-	View	uint64  `json:"view"`
-	CreatedAt int64	`json:"crated_at"`
+	ID        uint   `json:"id"`
+	Title     string `json:"title"`
+	Info      string `json:"info"`
+	URL       string `json:"url"`
+	Avatar    string `json:"avatar"`
+	View      uint64 `json:"view"`
+	CreatedAt int64  `json:"crated_at"`
 }
 
-// BuildVideo 序列化用户
+// BuildVideo 序列化视频
 
 func BuildVideo(item model.Video) Video {
 	return Video{
-		ID: item.ID,
+		ID:    item.ID,
 		Title: item.Title,
-		Info: item.Info,
+		Info:  item.Info,
 		// URL:       item.VideoURL(),
 		// Avatar:    item.AvatarURL(),
 		// View:      item.View(),
@@ -32,7 +33,7 @@ func BuildVideo(item model.Video) Video {
 func BuildVideos(items []model.Video) (videos []Video) {
 	for _, item := range items {
 		video := BuildVideo(item)
-		videos = append(videos, video) 
+		videos = append(videos, video)
 	}
 	return videos
 }

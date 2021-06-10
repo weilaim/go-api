@@ -38,7 +38,14 @@ func NewRouter() *gin.Engine {
 		}
 
 		//视频操作
+		//添加视频
 		v1.POST("videos", api.CreateVideo)
+		//获取视频
+		v1.GET("video/:id",api.ShowVideo)
+		v1.GET("videos", api.ListVideo)
+		v1.PUT("video/:id", api.UpdateVideo)
+		v1.DELETE("video/:id", api.DeleteVideo)
+
 	}
 	return r
 }
