@@ -4,7 +4,7 @@ import "github.com/gin-gonic/gin"
 
 
 type Response struct {
-	Code int `json:"code"`
+	Status int `json:"status"`
 	Data interface{} `json:"data,omitempty"`
 	Msg string `json:"msg"`
 	Error string `json:"error,omitempty"`
@@ -37,7 +37,7 @@ const (
 // 检查登录
 func CheckLogin() Response{
 	return Response{
-		Code: CodeCheckLogin,
+		Status: CodeCheckLogin,
 		Msg: "未登录",
 	}
 }
@@ -46,7 +46,7 @@ func CheckLogin() Response{
 // Err 通用错误处理
 func Err(errCode int, msg string, err error) Response{
 	res := Response{
-		Code: errCode,
+		Status: errCode,
 		Msg: msg,
 	}
 	//生产环境隐藏底层报错
