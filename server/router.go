@@ -48,6 +48,9 @@ func NewRouter() *gin.Engine {
 
 		//排行榜
 		v1.GET("rank/daily",api.DailyRank)
+
+		// oss toke
+		v1.POST("upload/token",api.UploadToken)
 	}
 	return r
 }
