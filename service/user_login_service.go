@@ -1,6 +1,7 @@
 package service
 
 import (
+
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 	"github.com/weilaim/blog-api/model"
@@ -10,7 +11,7 @@ import (
 //UserLoginService 管理用户注册服务
 type UserLoginService struct {
 	UserName        string `form:"user_name" json:"user_name" binding:"required,min=5,max=30"`
-	Password        string `form:"password" json:"password" binding:"required,min=8,max=40"`
+	Password        string `form:"password" json:"password" binding:"required,min=6,max=40"`
 }
 
 
@@ -30,7 +31,7 @@ func (service *UserLoginService) Login(c *gin.Context) serializer.Response {
 	}
 	
 	if !user.CheckPassword(service.Password) {
-		return serializer.ParamErr("账号或密码",nil)
+		return serializer.ParamErr("账号或密码错误",nil)
 	}
 
 	//设置session 

@@ -29,6 +29,8 @@ func BuildUser(user model.User) User {
 // BuildUserResponse 序列化用户响应
 func BuildUserResponse(user model.User) Response {
 	return Response{
+		Status: 200,
+		Msg: "成功",
 		Data: BuildUser(user),
 	}
 }

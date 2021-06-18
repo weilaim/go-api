@@ -16,7 +16,7 @@ import (
 func Ping(c *gin.Context) {
 	c.JSON(200,serializer.Response{
 		Status: 0,
-		Msg: "Pong",
+		Msg: "网络流畅您可以随意访问········",
 	})
 }
 

@@ -15,18 +15,23 @@ func Cors() gin.HandlerFunc {
 	if gin.Mode() == gin.ReleaseMode {
 		//生产环境需要配置跨域域名，否则403
 		config.AllowOrigins = []string{"http://www.example.com"}
-	}else{
+	} else {
 		//测试环境下模糊匹配本地开头的请求
 		config.AllowOriginFunc = func(origin string) bool {
-			if regexp.MustCompile(`^http://127\.0\.0\.1:\d+$`).MatchString(origin){
+
+			if regexp.MustCompile(`^http://127\.0\.0\.1:\d+$`).MatchString(origin) {
 				return true
 			}
 
-			if regexp.MustCompile(`^http://localhost:\d+$`).MatchString(origin){
+			if regexp.MustCompile(`^http://172\.22\.206\.19:\d+$`).MatchString(origin) {
 				return true
 			}
 
-			return false
+			if regexp.MustCompile(`^http://localhost:\d+$`).MatchString(origin) {
+				return true
+			}
+
+			return true
 		}
 	}
 	config.AllowCredentials = true

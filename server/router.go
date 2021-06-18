@@ -14,13 +14,13 @@ func NewRouter() *gin.Engine {
 
 	//路由中间件
 	r.Use(middleware.Session(os.Getenv("SESSION_SECRET")))
-	r.Use(middleware.Cors())
+	// r.Use(middleware.Cors())
 	r.Use(middleware.CurrentUser())
 
 	//路由 
 	v1 := r.Group("/api/v1")
 	{
-		v1.POST("ping", api.Ping)
+		v1.GET("ping", api.Ping)
 
 		// 用户注册
 		v1.POST("user/register", api.UserRegister)

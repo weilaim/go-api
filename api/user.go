@@ -1,32 +1,39 @@
 package api
 
 import (
+	"fmt"
+
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 	"github.com/weilaim/blog-api/serializer"
 	"github.com/weilaim/blog-api/service"
 )
 
-//UserRegister 用户注册接口
-
+// UserRegister 用户注册接口
 func UserRegister(c *gin.Context) {
 	var service service.UserRegisterService
 	if err := c.ShouldBind(&service); err == nil {
-		res := service.Register()
-		c.JSON(200, res)
+		if user, err := service.Register(); err != nil {
+			c.JSON(200, err)
+		} else {
+			res := serializer.BuildUserResponse(user)
+			c.JSON(200, res)
+		}
 	} else {
 		c.JSON(200, ErrorResponse(err))
 	}
-}
 
+}
 //UserLogin 用户登录接口
 func UserLogin(c *gin.Context) {
 	var service service.UserLoginService
 	if err := c.ShouldBind(&service); err == nil {
+		fmt.Println("true")
 		res := service.Login(c)
 		c.JSON(200, res)
 	} else {
 		c.JSON(200, ErrorResponse(err))
+		fmt.Println("false")
 	}
 }
 

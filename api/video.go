@@ -5,7 +5,7 @@ import (
 	"github.com/weilaim/blog-api/service"
 )
 
-//CreateVideo 用户注册接口
+//CreateVideo 创建视频接口
 func CreateVideo(c *gin.Context) {
 	service := service.CreateVideoService{}
 	if err := c.ShouldBind(&service); err == nil {
